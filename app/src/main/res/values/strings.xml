@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Project</string>
+    <string name="product_name">product name</string>
+    <string name="product_image_description">product image</string>
+    <string name="amazon_price">amazon price</string>
+    <string name="ebay_price">ebay price</string>
+    <string name="amazon_purchase">amazon purchase</string>
+    <string name="amazon_image_description">amazon logo</string>
+    <string name="ebay_image_description">ebay logo</string>
+</resources>
