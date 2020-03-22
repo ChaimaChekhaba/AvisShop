@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_latest_products.view.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class AdapterLatestProducts (var latestProds : ArrayList<Product>):
