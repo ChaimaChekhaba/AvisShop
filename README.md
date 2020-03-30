@@ -9,7 +9,7 @@ Ce qui ne marche pas dans cette phase:
 - Le bouton "Acheter" référence les sites d'Amazon et Ebay directement au lieu les liens des produits car le backend n'est pas implémenté.
 
 Les modifications des choix considérés dans le rapport d'analyse:
-- Nous utilisons Room pour le stockage au lieu de MongoDB comme prévu dans le rapport d'analyse car Room est plus facile à mettre en place, plus adéquat pour android. Et comme nous travaillons avec une petite base de données, Room est plus que suffisant.
+- Nous utilisons Room (avec les coroutines) pour le stockage au lieu de MongoDB comme prévu dans le rapport d'analyse car Room est plus facile à mettre en place, plus adéquat pour android. Et comme nous travaillons avec une petite base de données, Room est plus que suffisant.
 
 Ce qui reste à faire :
 - La communication avec le backend (le cloud et les webservices).
