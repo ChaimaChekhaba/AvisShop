@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_latest_product.*
@@ -26,6 +27,10 @@ class LatestProductActivity : BaseActivity(), ProductAdapter.onProductClickListe
 
         mRecyclerView = my_recycler_view
         loadProduct()
+
+        if (mProducts.size == 0){
+            Toast.makeText(this, "Vous n'avez pas encore évalué des produits", Toast.LENGTH_SHORT).show()
+        }
         configureRecyclerView()
     }
 
@@ -43,7 +48,6 @@ class LatestProductActivity : BaseActivity(), ProductAdapter.onProductClickListe
         runBlocking {
             val productDB = ProductDB.getInstance(this@LatestProductActivity)
             mProducts = productDB.productDao().getAll()
-
         }
     }
 
@@ -53,5 +57,17 @@ class LatestProductActivity : BaseActivity(), ProductAdapter.onProductClickListe
         val intent = Intent(this, ProductDetailsActivity::class.java)
         intent.putExtra("product", product)
         startActivity(intent)
+        finish()
+    }
+
+    override fun onResume() {
+        if (mProducts.size == 0){
+            Toast.makeText(this, "Vous n'avez pas encore évalué des produits", Toast.LENGTH_SHORT).show()
+        }
+        else{
+            loadProduct()
+            configureRecyclerView()
+        }
+        super.onResume()
     }
 }

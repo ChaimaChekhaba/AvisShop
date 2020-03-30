@@ -26,9 +26,11 @@ class ProductDetailsActivity : BaseActivity() {
         actionBar!!.title = "Résultat"
         //get the product set from the barcodeprocessor
         mProduct = intent.getSerializableExtra("product") as Product
-        loadProduct()
+
         //insert the product to the database
         insertProduct()
+
+        loadProduct()
 
         purchase_button.setOnClickListener {
             // the alertdialog referencing amazon and ebay websites
@@ -77,5 +79,4 @@ class ProductDetailsActivity : BaseActivity() {
             productDB.productDao().insertAll(mProduct)
         }
     }
-
 }

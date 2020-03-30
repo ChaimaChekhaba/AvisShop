@@ -18,9 +18,9 @@ class BarCodeProcessor (context: Context, codebar: String){
     //we choose a random object from a list of 5 products available in products.txt (in the Asset folder)
     fun proces_bar_code(){
 
-        var products = read_product_form_json()
+        val products = read_product_form_json()
         val rnds = (0..4).random()
-        var product = products[rnds]
+        val product = products[rnds]
         product.barcode = mCodeBar
         send_result(product)
     }
@@ -29,7 +29,6 @@ class BarCodeProcessor (context: Context, codebar: String){
     fun send_result(product: Product){
         val intent = Intent(context, ProductDetailsActivity::class.java)
         intent.putExtra("product", product)
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         context.startActivity(intent)
     }
 

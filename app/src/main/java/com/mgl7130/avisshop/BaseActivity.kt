@@ -44,12 +44,18 @@ open class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     val intent = Intent(this, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                     startActivity(intent)
+
+                    if (this.TAG == "ProductDetailsActivity")
+                        finish()
                 }
             }
             R.id.history ->{
                 val intent = Intent(this, LatestProductActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                 startActivity(intent)
+
+                if (this.TAG == "ProductDetailsActivity")
+                    finish()
             }
             R.id.about ->{
                 Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
