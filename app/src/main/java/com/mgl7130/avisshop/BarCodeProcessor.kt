@@ -7,14 +7,15 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.IOException
 
-//to be completed
+//barcode processing
 class BarCodeProcessor (context: Context, codebar: String){
+    //barcode value
     var mCodeBar = codebar
     var context = context
 
-    //send the bar code to the server
-    //this part is not functional it's just an example loaded from json file (products.txt in assets)
-    //we choose a random object from a list of 5 products available in products.txt
+    //send the bar code to the server as the communication with cloud and websrvices is not done yet
+    //we use a list of produts (as demonstration) loaded from json file (products.txt in assets)
+    //we choose a random object from a list of 5 products available in products.txt (in the Asset folder)
     fun proces_bar_code(){
 
         var products = read_product_form_json()
@@ -24,26 +25,25 @@ class BarCodeProcessor (context: Context, codebar: String){
         send_result(product)
     }
 
+    //send the product to ProductDetailsActivity
     fun send_result(product: Product){
-        var intent = Intent(context, ProductDetailsActivity::class.java)
+        val intent = Intent(context, ProductDetailsActivity::class.java)
         intent.putExtra("product", product)
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         context.startActivity(intent)
     }
 
+    //read the products file
     fun read_product_form_json(): List<Product> {
         val jsonFileString = getJsonDataFromAsset(context, "products.txt")
-        Log.i("data", jsonFileString)
-
         val gson = Gson()
         val listProductType = object : TypeToken<List<Product>>() {}.type
-
-        var products: List<Product> = gson.fromJson(jsonFileString, listProductType)
-        products.forEachIndexed { idx, product -> Log.i("data", "> Item $idx:\n$product") }
+        val products: List<Product> = gson.fromJson(jsonFileString, listProductType)
 
         return products
 
     }
-
+    //get the products file from the asset
     fun getJsonDataFromAsset(context: Context, fileName: String): String? {
         val jsonString: String
         try {

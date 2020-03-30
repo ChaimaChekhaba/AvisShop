@@ -21,35 +21,37 @@ class ProductDetailsActivity : BaseActivity() {
         val contentView = inflater.inflate(R.layout.activity_product_details, null, false)
         mDrawerLayout.addView(contentView, 0)
 
+        //change the title of the action bar
         val actionBar = supportActionBar
         actionBar!!.title = "Résultat"
-
+        //get the product set from the barcodeprocessor
         mProduct = intent.getSerializableExtra("product") as Product
         loadProduct()
+        //insert the product to the database
+        insertProduct()
 
         purchase_button.setOnClickListener {
-            // Initialize a new instance of
+            // the alertdialog referencing amazon and ebay websites
             val listItems = arrayOf("Amazon", "Ebay")
             val mBuilder = AlertDialog.Builder(this@ProductDetailsActivity)
             mBuilder.setTitle("Choisir un site pour l'achat")
-            //mBuilder.setMessage("Choisir le site d'achat ?")
+            var intent : Intent? = null
+
             mBuilder.setSingleChoiceItems(listItems, -1) { dialogInterface, i ->
                 if (i == 0){
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.amazon.ca"))
-                    startActivity(intent)
+                    intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.amazon.ca"))
                 }
                 else if (i == 1){
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.ebay.ca"))
-                    startActivity(intent)
+                    intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.ebay.ca"))
                 }
+
             }
             // Set a positive button and its click listener on alert dialog
             mBuilder.setPositiveButton("OK"){dialog, which ->
-                // Do something when user press the positive button
+                startActivity(intent)
             }
             // Set the neutral/cancel button click listener
-            mBuilder.setNeutralButton("Annuler") { dialog, which ->
-                // Do something when click the neutral button
+            mBuilder.setNegativeButton("Annuler") { dialog, which ->
                 dialog.cancel()
             }
             val mDialog = mBuilder.create()
@@ -57,6 +59,7 @@ class ProductDetailsActivity : BaseActivity() {
         }
     }
 
+    //updating the product in the layout fields
     private fun loadProduct(){
         product_name.text = mProduct.product_name
         note.text = """${mProduct.note}/10"""
@@ -66,12 +69,8 @@ class ProductDetailsActivity : BaseActivity() {
         badpoints.text = mProduct.bad_points + mProduct.bad_points
         Picasso.get().load(mProduct.product_image).into(product_image)
     }
-    //add the product to the database
-    override fun onStop() {
-        insertProduct()
-        super.onStop()
-    }
 
+    //inserting the produt in the database
     fun insertProduct(){
         runBlocking {
             val productDB = ProductDB.getInstance(this@ProductDetailsActivity)

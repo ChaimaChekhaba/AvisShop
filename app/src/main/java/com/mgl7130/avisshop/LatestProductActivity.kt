@@ -29,6 +29,7 @@ class LatestProductActivity : BaseActivity(), ProductAdapter.onProductClickListe
         configureRecyclerView()
     }
 
+    //recyclerview configuration
     private fun configureRecyclerView() {
         mAdapter = ProductAdapter(mProducts, this)
         mRecyclerView!!.adapter = mAdapter
@@ -36,6 +37,7 @@ class LatestProductActivity : BaseActivity(), ProductAdapter.onProductClickListe
         mRecyclerView!!.setHasFixedSize(true)
     }
 
+    //load the list of products from the database
     private fun loadProduct(){
 
         runBlocking {
@@ -45,8 +47,9 @@ class LatestProductActivity : BaseActivity(), ProductAdapter.onProductClickListe
         }
     }
 
+    //managing the click on the recyclerview items
     override fun onProductClick(position: Int) {
-        var product = mProducts.get(position)
+        val product = mProducts.get(position)
         val intent = Intent(this, ProductDetailsActivity::class.java)
         intent.putExtra("product", product)
         startActivity(intent)

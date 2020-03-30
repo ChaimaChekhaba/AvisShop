@@ -13,18 +13,21 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity() {
     override val TAG = "MainActivity"
 
+    // code bar value
     var mScannedResult: String = ""
+    // code bar prosessor
     var mBarCodeProcessor: BarCodeProcessor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        //adding the main view to the menu view
         val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val contentView = inflater.inflate(R.layout.activity_main, null, false)
         mDrawerLayout.addView(contentView, 0)
 
         captureCodeBar.setOnClickListener {
             run {
+                //set capture code bar activity
                 val integrator = IntentIntegrator(this)
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES)
                 integrator.setPrompt("Scanner un code à barre")
@@ -34,8 +37,8 @@ class MainActivity : BaseActivity() {
                 integrator.initiateScan()
             }
         }
-
-        codeBarNumber.setOnEditorActionListener{ v, actionId, event ->
+        //when the code bar is entred manually in the edit text
+        codeBarNumber.setOnEditorActionListener{ _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 if (codeBarNumber.text.length == 12 || codeBarNumber.text.length == 8){
                     //it could be a valid codebar
@@ -51,14 +54,15 @@ class MainActivity : BaseActivity() {
 
     }
 
+    //handling the result sent from the code bar activity (of the library)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-
-        var result: IntentResult? = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        val result: IntentResult? = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
 
         if(result != null){
 
             if(result.contents != null){
+                //scan done successufly call the barcode processor to handle the bar code
                 mScannedResult = result.contents
                 mBarCodeProcessor = BarCodeProcessor(this, mScannedResult)
                 mBarCodeProcessor!!.proces_bar_code()
@@ -73,7 +77,7 @@ class MainActivity : BaseActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
 
-        outState?.putString("scannedResult", mScannedResult)
+        outState.putString("scannedResult", mScannedResult)
         super.onSaveInstanceState(outState)
     }
 
@@ -83,6 +87,11 @@ class MainActivity : BaseActivity() {
         savedInstanceState?.let {
             mScannedResult = it.getString("scannedResult").toString()
         }
+    }
+
+    override fun onResume() {
+        codeBarNumber.text.clear()
+        super.onResume()
     }
 }
 

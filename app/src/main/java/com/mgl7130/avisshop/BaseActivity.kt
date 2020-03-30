@@ -14,6 +14,8 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.app_bar_drawer.*
 
+
+//this activity handle the navigation menu used in all the activities
 open class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     open val TAG = "BaseActivity"
 
@@ -34,20 +36,20 @@ open class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         navigation_view.setNavigationItemSelectedListener(this)
 
     }
-
+    //managing the navigation in the menu
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when (p0.itemId){
             R.id.new_evaluation ->{
                 if (this.TAG != "MainActivity"){
                     val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                     startActivity(intent)
-                    finish()
                 }
             }
             R.id.history ->{
                 val intent = Intent(this, LatestProductActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                 startActivity(intent)
-                finish()
             }
             R.id.about ->{
                 Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
