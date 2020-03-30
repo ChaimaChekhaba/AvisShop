@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">AvisShop</string>
+    <string name="product_name">Acer Predator Triton 500 Pro Gaming Notebook/ 15.6 FHD 144Hz IPS Display/ Ci7 9750H/ RTX 2060 6GB/ 16GB/512 SSD/Win 10, Black</string>
+    <string name="product_image_description">product image</string>
+    <string name="amazon_price">100$</string>
+    <string name="ebay_price">120$</string>
+    <string name="amazon_image_description">amazon logo</string>
+    <string name="ebay_image_description">ebay logo</string>
+    <string name="goodpoints">Style parfait, modèles très léger (mesh et nylon)</string>
+    <string name="badpoints">Modèle reçu aujourd hui et retourné immédiatement car hyer mal taillée trop petit étonnant pour adidas de ne pas respecter les pointures françaises</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="note">9.7/10</string>
+    <string name="purchase_button">Acheter</string>
+    <string name="more">Plus</string>
+    <string name="important_points">Résumé des avis</string>
+    <string name="barcodebutton">Commencer</string>
+    <string name="codebarnumber">Chiffres de code à barre</string>
+    <string name="helloMessage">Salut !</string>
+    <string name="welcome">Votre premier pas pour des achats intelligents</string>
+    <string name="avisshop_logo_description">AvisShop</string>
+    <string name="action_settings">menu</string>
+    <string name="title_activity_navigation_menu">NavigationMenuActivity</string>
+    <string name="nav_open">Open navigation drawer</string>
+    <string name="nav_close">Close navigation drawer</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="new_evaluation">Nouvelle évaluation</string>
+    <string name="history">Historique des évaluations</string>
+    <string name="about">A propos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

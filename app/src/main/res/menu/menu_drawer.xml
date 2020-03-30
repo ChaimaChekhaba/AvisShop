@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item android:id="@+id/new_evaluation"
+            android:title="@string/new_evaluation"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium">
+        </item>
+        <item android:id="@+id/history"
+            android:title="@string/history"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium">
+
+        </item>
+        <item android:id="@+id/about"
+            android:title="@string/about"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium">
+        </item>
+    </group>
+</menu>

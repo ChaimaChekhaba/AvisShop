@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "456206462982",
+    "firebase_url": "https://avisshop-17614.firebaseio.com",
+    "project_id": "avisshop-17614",
+    "storage_bucket": "avisshop-17614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456206462982:android:c4793aedfa3d572dc65387",
+        "android_client_info": {
+          "package_name": "com.mgl7130.avisshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456206462982-n5naaibtrfv5ilggdg1avginnntn2k5q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mgl7130.avisshop",
+            "certificate_hash": "0cfe94dac8c7c8db0c33b06252045927ba2eaf18"
+          }
+        },
+        {
+          "client_id": "456206462982-1gpakrdolmnjsopa3mpa7mgf5atol70t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmXaSkJ-qdb4e8whVI0KOJxnV-X-X6l4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456206462982-1gpakrdolmnjsopa3mpa7mgf5atol70t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

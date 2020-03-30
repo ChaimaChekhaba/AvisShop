@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:isScrollContainer="true"
+    tools:context=".ProductDetailsActivity">
+
+    <TextView
+        android:id="@+id/amazon_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/amazon_price"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/ebay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ebay"
+        app:layout_constraintTop_toTopOf="@+id/ebay" />
+
+    <ImageView
+        android:id="@+id/ebay"
+        android:layout_width="?attr/dialogPreferredPadding"
+        android:layout_height="?attr/dialogPreferredPadding"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/ebay_image_description"
+        app:layout_constraintStart_toEndOf="@+id/product_image"
+        app:layout_constraintTop_toBottomOf="@+id/amazon"
+        app:srcCompat="@drawable/ic_icons8_ebay" />
+
+    <Button
+        android:id="@+id/purchase_button"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="?attr/dialogCornerRadius"
+        android:layout_marginLeft="?attr/dialogCornerRadius"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/purchase_button"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/ebay"
+        app:layout_constraintTop_toBottomOf="@+id/amazon_price" />
+
+    <TextView
+        android:id="@+id/ebay_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/ebay_price"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/amazon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/amazon"
+        app:layout_constraintTop_toTopOf="@+id/amazon"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/amazon"
+        android:layout_width="?attr/dialogPreferredPadding"
+        android:layout_height="?attr/dialogPreferredPadding"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/amazon_image_description"
+        app:layout_constraintStart_toEndOf="@+id/product_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_icons8_amazon" />
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/product_image_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/product" />
+
+    <TextView
+        android:id="@+id/badpoints"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:maxLength="500"
+        android:maxLines="3"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/badpoints"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goodpoints" />
+
+    <TextView
+        android:id="@+id/important_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/important_points"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:fontFamily="@font/roboto_mono_medium"
+        app:layout_constraintEnd_toEndOf="@+id/product_name"
+        app:layout_constraintStart_toStartOf="@+id/product_name"
+        app:layout_constraintTop_toBottomOf="@+id/divider6" />
+
+    <Button
+        android:id="@+id/more"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/more"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/badpoints" />
+
+    <TextView
+        android:id="@+id/goodpoints"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:maxLength="500"
+        android:maxLines="4"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/goodpoints"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/important_points" />
+
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:maxLength="50"
+        android:maxLines="2"
+        android:paddingBottom="?attr/dialogCornerRadius"
+        android:text="@string/product_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:fontFamily="@font/roboto_mono_medium"
+        app:layout_constraintEnd_toEndOf="@+id/purchase_button"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="@+id/product_image"
+        app:layout_constraintTop_toBottomOf="@+id/product_image" />
+
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="?attr/dialogCornerRadius"
+        android:layout_marginLeft="?attr/dialogCornerRadius"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="?attr/dialogCornerRadius"
+        android:layout_marginRight="?attr/dialogCornerRadius"
+        android:text="@string/note"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/more" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="?attr/dialogCornerRadius"
+        android:layout_marginLeft="?attr/dialogCornerRadius"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="?attr/dialogCornerRadius"
+        android:layout_marginRight="?attr/dialogCornerRadius"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_name" />
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/note"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/more" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
