@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_latest_product.*
 import kotlinx.coroutines.runBlocking
 
 class LatestProductActivity : BaseActivity(), ProductAdapter.onProductClickListener {
-    override val TAG = "ProductDetailsActivity"
+    override val TAG = "LatestProductActivity"
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: ProductAdapter
     private lateinit var mProducts: List<Product>
@@ -21,6 +21,8 @@ class LatestProductActivity : BaseActivity(), ProductAdapter.onProductClickListe
         val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val contentView = inflater.inflate(R.layout.activity_latest_product, null, false)
         mDrawerLayout.addView(contentView, 0)
+        val actionBar = supportActionBar
+        actionBar!!.title = "Historique des évaluations"
 
         mRecyclerView = my_recycler_view
         loadProduct()

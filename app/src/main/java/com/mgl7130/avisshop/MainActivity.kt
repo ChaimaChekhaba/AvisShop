@@ -37,7 +37,7 @@ class MainActivity : BaseActivity() {
 
         codeBarNumber.setOnEditorActionListener{ v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
-                if (codeBarNumber.text.length == 12){
+                if (codeBarNumber.text.length == 12 || codeBarNumber.text.length == 8){
                     //it could be a valid codebar
                     mScannedResult = codeBarNumber.text.toString()
                     mBarCodeProcessor = BarCodeProcessor(this@MainActivity, mScannedResult)

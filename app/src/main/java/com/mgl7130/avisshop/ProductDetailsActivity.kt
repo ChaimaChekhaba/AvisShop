@@ -21,6 +21,9 @@ class ProductDetailsActivity : BaseActivity() {
         val contentView = inflater.inflate(R.layout.activity_product_details, null, false)
         mDrawerLayout.addView(contentView, 0)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = "Résultat"
+
         mProduct = intent.getSerializableExtra("product") as Product
         loadProduct()
 

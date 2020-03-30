@@ -51,7 +51,6 @@ dependencies {
     //dependency for material design components
     implementation 'com.google.android.material:material:1.0.0'
     //bar code detector from zxing library
-    //implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0@aar'
     implementation 'com.google.zxing:core:3.3.3'
     //Room database and coroutines
