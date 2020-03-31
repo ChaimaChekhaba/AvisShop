@@ -5,11 +5,13 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_product_details.*
 import kotlinx.coroutines.*
 
+@Suppress("PLUGIN_WARNING")
 class ProductDetailsActivity : BaseActivity() {
     override val TAG = "ProductDetailsActivity"
 
@@ -29,13 +31,12 @@ class ProductDetailsActivity : BaseActivity() {
 
         //insert the product to the database
         insertProduct()
-
         loadProduct()
 
         purchase_button.setOnClickListener {
             // the alertdialog referencing amazon and ebay websites
             val listItems = arrayOf("Amazon", "Ebay")
-            val mBuilder = AlertDialog.Builder(this@ProductDetailsActivity)
+            val mBuilder = AlertDialog.Builder(it.getContext())
             mBuilder.setTitle("Choisir un site pour l'achat")
             var intent : Intent? = null
 

@@ -21,6 +21,8 @@ class BarCodeProcessor (context: Context, codebar: String){
         val products = read_product_form_json()
         val rnds = (0..4).random()
         val product = products[rnds]
+        //we update the code bar of the products
+        //Rq: We could have products with the same information but the codebar is different
         product.barcode = mCodeBar
         send_result(product)
     }

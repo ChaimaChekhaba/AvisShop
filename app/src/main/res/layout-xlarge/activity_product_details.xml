@@ -81,7 +81,7 @@
             android:layout_marginTop="48dp"
             android:layout_marginBottom="48dp"
             android:contentDescription="@string/ebay_image_description"
-            app:layout_constraintBottom_toTopOf="@+id/purchase"
+            app:layout_constraintBottom_toTopOf="@+id/purchase_button"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/divider3"
             app:srcCompat="@drawable/ic_icons8_ebay" />
@@ -96,7 +96,7 @@
             android:layout_marginBottom="48dp"
             android:text="@string/amazon_price"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toTopOf="@+id/purchase"
+            app:layout_constraintBottom_toTopOf="@+id/purchase_button"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/divider3"
             app:layout_constraintVertical_bias="0.526" />
@@ -114,7 +114,7 @@
             app:layout_constraintTop_toTopOf="@+id/ebay" />
 
         <Button
-            android:id="@+id/purchase"
+            android:id="@+id/purchase_button"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
