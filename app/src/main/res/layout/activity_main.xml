@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <Button
         android:id="@+id/captureCodeBar"
@@ -30,7 +30,7 @@
         android:hint="@string/codebarnumber"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
-        android:maxLength="12"
+        android:maxLength="13"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toTopOf="@+id/part_30h"
         app:layout_constraintEnd_toStartOf="@+id/part_85v"

@@ -34,6 +34,8 @@
     <string name="history">Historique des évaluations</string>
     <string name="about">A propos</string>
     <string name="result">"Résultats de l'évaluation"</string>
+    <string name="aboutas">Tous les droits réservés</string>
+    <string name="aboutastop">Avis Shop 2020</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

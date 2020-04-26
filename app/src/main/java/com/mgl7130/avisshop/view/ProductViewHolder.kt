@@ -1,9 +1,10 @@
-package com.mgl7130.avisshop
+package com.mgl7130.avisshop.view
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.mgl7130.avisshop.model.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.product_item_layout.view.*
 
@@ -12,10 +13,9 @@ class ProductViewHolder(itemView: View, onProductListener: ProductAdapter.onProd
     : RecyclerView.ViewHolder(itemView), View.OnClickListener{
     var product_name: TextView = itemView.product_name
     var product_image: ImageView = itemView.product_image_item
-    var mOnProductListener: ProductAdapter.onProductClickListener
+    var mOnProductListener: ProductAdapter.onProductClickListener = onProductListener
 
     init {
-        mOnProductListener = onProductListener
         itemView.setOnClickListener(this)
     }
 

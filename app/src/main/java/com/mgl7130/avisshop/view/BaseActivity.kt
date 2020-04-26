@@ -1,4 +1,4 @@
-package com.mgl7130.avisshop
+package com.mgl7130.avisshop.view
 
 import android.app.Activity
 import android.content.Intent
@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.mgl7130.avisshop.R
 import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.app_bar_drawer.*
 
@@ -30,7 +30,10 @@ open class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
     // handling the menu
     fun init(){
-        val toogle = ActionBarDrawerToggle(Activity(), drawer_layout, toolbar, R.string.nav_open, R.string.nav_close)
+        val toogle = ActionBarDrawerToggle(Activity(), drawer_layout, toolbar,
+            R.string.nav_open,
+            R.string.nav_close
+        )
         drawer_layout.addDrawerListener(toogle)
         toogle.syncState()
         navigation_view.setNavigationItemSelectedListener(this)
@@ -54,11 +57,11 @@ open class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                 startActivity(intent)
 
-                if (this.TAG == "ProductDetailsActivity")
-                    finish()
             }
             R.id.about ->{
-                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, AboutActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                startActivity(intent)
             }
             else -> {
                 Log.i("error", "item id does not exist")

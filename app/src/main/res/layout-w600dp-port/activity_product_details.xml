@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailsActivity">
+    tools:context=".view.ProductDetailsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_layout"
@@ -15,7 +15,7 @@
         android:isScrollContainer="true"
         android:keepScreenOn="false"
         app:layout_scrollFlags="scroll"
-        tools:context=".ProductDetailsActivity">
+        tools:context=".view.ProductDetailsActivity">
 
         <TextView
             android:id="@+id/product_name"

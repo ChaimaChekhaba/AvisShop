@@ -1,13 +1,20 @@
-package com.mgl7130.avisshop
+package com.mgl7130.avisshop.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
+import com.mgl7130.avisshop.R
+import com.mgl7130.avisshop.model.Product
+import com.mgl7130.avisshop.model.ProductDB
+import com.mgl7130.avisshop.viewmodel.ProductRepository
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.runBlocking
 
 // home activity
 class MainActivity : BaseActivity() {
@@ -15,9 +22,9 @@ class MainActivity : BaseActivity() {
 
     // code bar value
     var mScannedResult: String = ""
-    // code bar prosessor
-    var mBarCodeProcessor: BarCodeProcessor? = null
 
+
+    @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //adding the main view to the menu view
@@ -40,11 +47,10 @@ class MainActivity : BaseActivity() {
         //when the code bar is entred manually in the edit text
         codeBarNumber.setOnEditorActionListener{ _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
-                if (codeBarNumber.text.length == 12 || codeBarNumber.text.length == 8){
+                if (codeBarNumber.text.length == 13 || codeBarNumber.text.length == 8){
                     //it could be a valid codebar
                     mScannedResult = codeBarNumber.text.toString()
-                    mBarCodeProcessor = BarCodeProcessor(this@MainActivity, mScannedResult)
-                    mBarCodeProcessor!!.proces_bar_code()
+                    send()
                 }
                 true
             } else {
@@ -64,8 +70,7 @@ class MainActivity : BaseActivity() {
             if(result.contents != null){
                 //scan done successufly call the barcode processor to handle the bar code
                 mScannedResult = result.contents
-                mBarCodeProcessor = BarCodeProcessor(this, mScannedResult)
-                mBarCodeProcessor!!.proces_bar_code()
+                send()
 
             } else {
                 mScannedResult = "scan failed"
@@ -81,10 +86,10 @@ class MainActivity : BaseActivity() {
         super.onSaveInstanceState(outState)
     }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
 
-        savedInstanceState?.let {
+        savedInstanceState.let {
             mScannedResult = it.getString("scannedResult").toString()
         }
     }
@@ -92,6 +97,31 @@ class MainActivity : BaseActivity() {
     override fun onResume() {
         codeBarNumber.text.clear()
         super.onResume()
+    }
+
+    // send the barcode to the backend
+    private fun send(){
+        runBlocking {
+            val mRepository = ProductRepository(ProductDB.getInstance(application, this).productDao())
+            val product = mRepository.getData(mScannedResult)
+
+            if (product.product_name != "None")
+                sendResult(product)
+
+            else {
+                Toast.makeText(this@MainActivity, "Produit introuvable. " +
+                        "Merci de réesseyer utlerieurement.", Toast.LENGTH_LONG).show()
+                codeBarNumber.text.clear()
+            }
+        }
+    }
+
+    //send the product to ProductDetailsActivity
+    private fun sendResult(product: Product){
+        val intent = Intent(applicationContext, ProductDetailsActivity::class.java)
+        intent.putExtra("product", product)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        applicationContext.startActivity(intent)
     }
 }
 

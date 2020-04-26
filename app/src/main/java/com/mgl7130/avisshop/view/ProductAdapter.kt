@@ -1,19 +1,20 @@
-package com.mgl7130.avisshop
+package com.mgl7130.avisshop.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mgl7130.avisshop.R
+import com.mgl7130.avisshop.model.Product
 
 
-class ProductAdapter internal constructor(private val products: List<Product>, onProductListener: onProductClickListener) :
+class ProductAdapter internal constructor(onProductListener: onProductClickListener) :
     RecyclerView.Adapter<ProductViewHolder>() {
 
-    var mOnProductClickListener: onProductClickListener
+    var mProducts: List<Product> = emptyList()
 
-    init {
-        mOnProductClickListener = onProductListener
-    }
+    var mOnProductClickListener: onProductClickListener = onProductListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val context = parent.context
@@ -23,15 +24,20 @@ class ProductAdapter internal constructor(private val products: List<Product>, o
     }
 
     override fun onBindViewHolder(viewHolder: ProductViewHolder, position: Int) {
-        viewHolder.updateWithProduct(products[position])
+        viewHolder.updateWithProduct(mProducts[position])
     }
 
     override fun getItemCount(): Int {
-        return products.size
+        return mProducts.size
     }
 
     interface onProductClickListener{
         fun onProductClick(position: Int)
 
+    }
+
+    fun updateProducts(products: List<Product>){
+        mProducts = products
+        notifyDataSetChanged()
     }
 }
