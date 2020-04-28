@@ -1,7 +1,6 @@
 package com.mgl7130.avisshop
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.mgl7130.avisshop.business.ProductApiService
 import com.mgl7130.avisshop.model.Product
 import com.mgl7130.avisshop.model.ProductDao
 import com.mgl7130.avisshop.viewmodel.ProductRepository

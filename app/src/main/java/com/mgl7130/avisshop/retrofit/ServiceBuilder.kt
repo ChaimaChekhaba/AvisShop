@@ -1,4 +1,4 @@
-package com.mgl7130.avisshop.business
+package com.mgl7130.avisshop.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

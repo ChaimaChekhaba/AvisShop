@@ -4,14 +4,18 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import com.google.gson.Gson
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import com.mgl7130.avisshop.R
 import com.mgl7130.avisshop.model.Product
 import com.mgl7130.avisshop.model.ProductDB
+import com.mgl7130.avisshop.util.launchWorker
+import com.mgl7130.avisshop.util.isOnline
 import com.mgl7130.avisshop.viewmodel.ProductRepository
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.runBlocking
@@ -68,7 +72,7 @@ class MainActivity : BaseActivity() {
         if(result != null){
 
             if(result.contents != null){
-                //scan done successufly call the barcode processor to handle the bar code
+                //scan done successfully call the barcode processor to handle the bar code
                 mScannedResult = result.contents
                 send()
 
@@ -103,23 +107,40 @@ class MainActivity : BaseActivity() {
     private fun send(){
         runBlocking {
             val mRepository = ProductRepository(ProductDB.getInstance(application, this).productDao())
-            val product = mRepository.getData(mScannedResult)
+            val statusProductPair = mRepository.getData(mScannedResult)
 
-            if (product.product_name != "None")
-                sendResult(product)
+            when {
+                statusProductPair.first == "200" -> statusProductPair.second?.let { sendResult(it) }
+                statusProductPair.first == "404" -> {
+                    // there is network access
+                    if  (isOnline(applicationContext)) {
+                        Toast.makeText(this@MainActivity, "Produit introuvable. " +
+                                "Merci de réesseyer utlerieurement.", Toast.LENGTH_LONG).show()
+                        codeBarNumber.text.clear()
+                    }
+                    else{
 
-            else {
-                Toast.makeText(this@MainActivity, "Produit introuvable. " +
-                        "Merci de réesseyer utlerieurement.", Toast.LENGTH_LONG).show()
-                codeBarNumber.text.clear()
+                        Toast.makeText(this@MainActivity, "Pas d'accès internet. " +
+                                "Merci de vérifier votre connexion.", Toast.LENGTH_LONG).show()
+                        //no network access call the work manager to perform the operation when network access is available
+                        launchWorker(mScannedResult, this@MainActivity)
+                        codeBarNumber.text.clear()
+                    }
+
+                }
+                else -> {
+                    Log.d("error", "Something went wrong")
+                }
             }
         }
     }
 
     //send the product to ProductDetailsActivity
     private fun sendResult(product: Product){
+        val productGson = Gson().toJson(product)
         val intent = Intent(applicationContext, ProductDetailsActivity::class.java)
-        intent.putExtra("product", product)
+        intent.putExtra("product", productGson)
+        intent.action = productGson
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         applicationContext.startActivity(intent)
     }

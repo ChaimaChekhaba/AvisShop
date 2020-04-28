@@ -1,4 +1,4 @@
-package com.mgl7130.avisshop.business
+package com.mgl7130.avisshop.retrofit
 
 import com.mgl7130.avisshop.model.Product
 import retrofit2.Call

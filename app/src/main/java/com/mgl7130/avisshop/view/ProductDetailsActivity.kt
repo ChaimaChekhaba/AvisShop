@@ -1,6 +1,7 @@
 package com.mgl7130.avisshop.view
 
 import android.annotation.SuppressLint
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
+import com.google.gson.Gson
 import com.mgl7130.avisshop.viewmodel.ProductRepository
 import com.mgl7130.avisshop.R
 import com.mgl7130.avisshop.model.Product
@@ -31,8 +33,9 @@ class ProductDetailsActivity : BaseActivity() {
         //change the title of the action bar
         val actionBar = supportActionBar
         actionBar!!.title = "Résultat"
-        //get the product set from the barcodeprocessor
-        mProduct = intent.getSerializableExtra("product") as Product
+
+        //get the product set from the MainActivity
+        mProduct = Gson().fromJson(intent.getSerializableExtra("product") as String, Product::class.java)
 
         //insert the product to the database
         insertProduct()
