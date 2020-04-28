@@ -2,18 +2,18 @@ Projet: AvisShop
 
 Equipe: Chaima Chekhaba, Maher Jaouadi, Mohamed Daboussi
 
-#Ce qui ne marche pas dans cette phase:
-- Le scan du code à barre se fait en mode landscape seulement à cause de la library utilisée (Zxing). Cette dernière ne permet pas le scan en mode portrait.
 
-#Les modifications des choix considérés dans le rapport d'analyse: 
-- Nous utilisons Room (avec les coroutines) pour le stockage au lieu de MongoDB comme prévu dans le rapport d'analyse car Room est plus facile à mettre en place, plus adéquat pour android. Et comme nous travaillons avec une petite base de données, Room est plus que suffisant.
+#Ce que nous avons fait:
+- La communication avec le backend en utilisant Retrofit.
+- L'architecture de l'application: MVVM
+- Le mode offline avec Worker.
+- Les capteurs utilisés: La caméra pour le scan des code à barres et accès réseau pour le mode offline.
+- Les tests, nous avons utilisé la librarie Mockito.s
+
+#Ce qui ne marche pas dans cette phase:
+- Le work manager ne marche pas en background correctement.
 
 #Remarques :
-- étant donné que la partie backend n'est pas encore implémenté (la communication avec le cloud et les webservices). Nous avons utilisé un fichier Json contenant 5 products pour la démonstration.
-- Après le scan d'un code à barre, nous choisissons un produit du fichier des produits Json aléatoirement et nous mettons à jour seulement son code à barre. Alors, nous pouvons avoir des produits avec les mêmes informations (nom, image, etc) mais avec des codes à barre différent.
+- Les codes à barres qui ne sont pas de type UPC (code à barres international) ne sont pas évalués. Voici des exemples de code UPC: 0640135291395 - 0883412740890.
+- Site pour trouver le code UPC d’un produit : https://www.barcodespider.com/
 
-#Ce qui reste à faire :
-- La communication avec le backend (le cloud et les webservices).
-- Mode offline.
-- L'option "A propos" dans le menu de navigation n'est pas encore implémenté.
-- Le bouton "Acheter" référence les sites d'Amazon et Ebay directement au lieu les liens des produits car le backend n'est pas encore implémenté.

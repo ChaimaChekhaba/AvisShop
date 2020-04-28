@@ -22,7 +22,5 @@ class MyWorkTest {
         val worker =
             OneTimeWorkRequestBuilder<ProductWorker>().build()
         // Run the worker synchronously
-
-
     }
 }
